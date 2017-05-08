@@ -8,3 +8,12 @@ c:\users\angel\dropbox\documents\visual studio 2017\Projects\SuperAdventure\Supe
 c:\users\angel\dropbox\documents\visual studio 2017\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.GenerateResource.Cache
 c:\users\angel\dropbox\documents\visual studio 2017\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.exe
 c:\users\angel\dropbox\documents\visual studio 2017\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.pdb
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.exe.config
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.exe
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.pdb
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csprojResolveAssemblyReference.cache
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.Properties.Resources.resources
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.SuperAdventure.resources
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.GenerateResource.Cache
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.exe
+C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.pdb
