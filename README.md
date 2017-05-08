@@ -1,3 +1,3 @@
 # SuperAdventure
 
-Just some C# practice building an RPG from scratch.
+Just some C# and GitHub practice building an RPG from scratch.
