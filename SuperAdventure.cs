@@ -21,13 +21,12 @@ namespace SuperAdventure
         {
             InitializeComponent(); // Añadido por VS
 
-            _player = new Player(); // Creación de instancia de la clase.
+            Location location = new Location(1, "Home", "This is your house.");
+            
 
-            _player.MaximumHitPoints = 10;
-            _player.CurrentHitPoints = 10;
-            _player.Gold = 20;
-            _player.ExperiencePoints = 0;
-            _player.Level = 1;
+            _player = new Player(20, 20, 10, 0, 1); // Creación de instancia de la clase.
+
+           
 
             lblHitPoints.Text = _player.CurrentHitPoints.ToString();
             lblGold.Text = _player.CurrentHitPoints.ToString();

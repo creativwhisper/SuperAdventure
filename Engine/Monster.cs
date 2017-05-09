@@ -6,16 +6,26 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    class Monster
+    public class Monster : LivingCreature
     {
 
+        // Hereda propiedades MaximumHitPoints y CurrentHitPoints de la clase padre "LivingCreature"
         public int ID { get; set; }
         public string Name { get; set; }
-        public int MaximumHitPoints { get; set; }
-        public int CurrentHitPoints { get; set; }
         public int MaximumDamage { get; set; }
         public int RewardExperiencePoints { get; set; }
         public int RewardGold { get; set; }
+
+        // public constructor con algunos parámetros derivados de la clase padre (base)
+        public Monster ( int id, string name, int maximumHitPoints, int currentHitPoints, int maximumDamage, int rewardExperiencePoints, int rewardGold)
+            : base ( maximumHitPoints, currentHitPoints)
+        {
+            ID = id;
+            Name = name;
+            MaximumDamage = maximumDamage;
+            RewardExperiencePoints = rewardExperiencePoints;
+            RewardGold = rewardGold;
+        }
 
     }
 }

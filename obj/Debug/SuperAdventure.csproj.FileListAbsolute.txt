@@ -19,3 +19,4 @@ C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\D
 C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.pdb
 C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\Engine.dll
 C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\Engine.pdb
+C:\Users\Angel\Dropbox\Documents\Visual Studio 2017\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.SuperAdventure.resources

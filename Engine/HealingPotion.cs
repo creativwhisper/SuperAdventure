@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    class HealingPotion
+    public class HealingPotion : Item
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string NamePlural { get; set; }
+        // hereda propiedades ID, Name y NamePlural de la clase padre "Item"
+
         public int AmountToHeal { get; set; }
+        
+        // public constructor derivando algunos parámetros desde la clase padre (base)
+        public HealingPotion ( int id, string name, string namePlural, int amountToHeal) : base( id, name, namePlural)
+        {
+            AmountToHeal = amountToHeal;
+        }
 
     }
 }
