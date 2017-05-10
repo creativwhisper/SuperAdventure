@@ -8,6 +8,7 @@ namespace Engine
 {
     public static class World
     {
+
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<Monster> Monsters = new List<Monster>();
         public static readonly List<Quest> Quests = new List<Quest>();
