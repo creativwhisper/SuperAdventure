@@ -1,0 +1,10 @@
+IDEA: Convertir el juego en ARPG tipo diablo. Jugar con las loot tables y crear monstruos más poderosos con generación de nombres y poderes.
+
+- Crear un generador de nombres para los items
+- Crear un generador de nombres para los monstruos
+- Crear un generador de poderes para los monstruos (vinculado al de nombres)
+- Mejorar sistema de combate
+- Mejorar inventario
+- Sistema de hechizos
+- Características (actualmente sólo tenemos Vida y Ataque vinculado al arma)
+
