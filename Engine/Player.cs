@@ -17,6 +17,8 @@ namespace Engine
         public List<InventoryItem> Inventory { get; set; }
         public List<PlayerQuest> Quests { get; set; }
 
+        
+
         public Player(int maximumHitPoints, int currentHitPoints, int gold, int experiencePoints, int level)
             : base (maximumHitPoints, currentHitPoints)
         {
@@ -25,6 +27,14 @@ namespace Engine
             Level = level;
             Inventory = new List<InventoryItem>();
             Quests = new List<PlayerQuest>();
+            
+        }
+
+        public int SetNewLevel()
+        {
+            Level++;
+            return Level;
+
         }
 
         public bool HasRequiredItemToEnterThisLocation(Location location)

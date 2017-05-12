@@ -16,6 +16,7 @@ namespace SuperAdventure
     {
         private Player _player;
         private Monster _currentMonster;
+        private int experienceRequiredToLevel = 100;
 
         public SuperAdventure()
         {
@@ -321,6 +322,14 @@ namespace SuperAdventure
 
                     // Give player experience points for killing the monster
                     _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
+                    if( _player.ExperiencePoints >= experienceRequiredToLevel)
+                    {
+                        _player.SetNewLevel();
+                        experienceRequiredToLevel = experienceRequiredToLevel * 2;
+                        int nextLevel = _player.Level + 1;
+                        rtbMessages.Text += "Level up!!" + Environment.NewLine;
+                        rtbMessages.Text += "You need " + experienceRequiredToLevel.ToString() + " experience points to reach level " + nextLevel + "." + Environment.NewLine;
+                    }
                     rtbMessages.Text += "You receive " + _currentMonster.RewardExperiencePoints.ToString() + " experience points" + Environment.NewLine;
 
                     // Give player gold for killing the monster 
