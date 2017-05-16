@@ -45,21 +45,21 @@ namespace Engine
         {
             if (location.ItemRequiredToEnter == null)
             {
-                // There is no required item for this location, so return "true"
+                // No hay requisitos para entrar en la ubicación, así que devolvemos true
                 return true;
             }
 
-            // See if the player has the required item in their inventory
+            // Comprueba si el jugador tiene el objeto que se requiere para entrar
             foreach (InventoryItem ii in Inventory)
             {
                 if (ii.Details.ID == location.ItemRequiredToEnter.ID)
                 {
-                    // We found the required item, so return "true"
+                    // Hemos encontrado el objeto así que devolvemos true
                     return true;
                 }
             }
 
-            // We didn't find the required item in their inventory, so return "false"
+            // No hemos encontrado el objeto requerido así que devolvemos false
             return false;
         }
 
@@ -91,33 +91,33 @@ namespace Engine
 
         public bool HasAllQuestCompletionItems(Quest quest)
         {
-            // See if the player has all the items needed to complete the quest here
+            // Comprueba si el jugador tiene todos los objetos para completar la misión
             foreach (QuestCompletionItem qci in quest.QuestCompletionItems)
             {
                 bool foundItemInPlayersInventory = false;
 
-                // Check each item in the player's inventory, to see if they have it, and enough of it
+                // Comprueba cada item en el inventario para ver si tiene el necesario y en la cantidad correcta
                 foreach (InventoryItem ii in Inventory)
                 {
-                    if (ii.Details.ID == qci.Details.ID) // The player has the item in their inventory
+                    if (ii.Details.ID == qci.Details.ID) // El jugador tiene el item en el inventario
                     {
                         foundItemInPlayersInventory = true;
 
-                        if (ii.Quantity < qci.Quantity) // The player does not have enough of this item to complete the quest
+                        if (ii.Quantity < qci.Quantity) // El jugador no tiene la cantidad requerida para la misión.
                         {
                             return false;
                         }
                     }
                 }
 
-                // The player does not have any of this quest completion item in their inventory
+                // El jugador no tiene ningún objeto de los requeridos.
                 if (!foundItemInPlayersInventory)
                 {
                     return false;
                 }
             }
 
-            // If we got here, then the player must have all the required items, and enough of them, to complete the quest.
+            // Si el jugador tiene el item y además en la cantidad correcta para completar la misión
             return true;
         }
 
@@ -129,7 +129,7 @@ namespace Engine
                 {
                     if (ii.Details.ID == qci.Details.ID)
                     {
-                        // Subtract the quantity from the player's inventory that was needed to complete the quest
+                        // Quita el número de objetos necesarios para completar la misión del inventario del jugador.
                         ii.Quantity -= qci.Quantity;
                         break;
                     }
@@ -143,28 +143,28 @@ namespace Engine
             {
                 if (ii.Details.ID == itemToAdd.ID)
                 {
-                    // They have the item in their inventory, so increase the quantity by one
+                    // Tiene el objeto en el inventario, así que añadimos uno más y salimos de la función
                     ii.Quantity++;
 
-                    return; // We added the item, and are done, so get out of this function
+                    return; 
                 }
             }
 
-            // They didn't have the item, so add it to their inventory, with a quantity of 1
+            // No tiene ninguno en el inventario así que lo añadimos con cantidad 1
             Inventory.Add(new InventoryItem(itemToAdd, 1));
         }
 
         public void MarkQuestCompleted(Quest quest)
         {
-            // Find the quest in the player's quest list
+            // Busca la misión en la lista de misiones del jugador
             foreach (PlayerQuest pq in Quests)
             {
                 if (pq.Details.ID == quest.ID)
                 {
-                    // Mark it as completed
+                    // Marca la misión como completada y salimos de la función
                     pq.IsCompleted = true;
 
-                    return; // We found the quest, and marked it complete, so get out of this function
+                    return;
                 }
             }
         }

@@ -52,29 +52,29 @@ namespace Engine
 
         private static void PopulateItems()
         {
-            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty sword", "Rusty swords", 0, 5));
-            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails"));
-            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Pieces of fur"));
-            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Snake fang", "Snake fangs"));
-            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Snakeskin", "Snakeskins"));
-            Items.Add(new Weapon(ITEM_ID_CLUB, "Club", "Clubs", 3, 10));
-            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Healing potion", "Healing potions", 5));
-            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Spider fang", "Spider fangs"));
-            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Spider silk", "Spider silks"));
-            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Adventurer pass", "Adventurer passes"));
+            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Espada oxidada", "Espadas oxidadas", 0, 5));
+            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Cola de rata", "Colas de rata"));
+            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Pieza de piel", "Piezas de piel"));
+            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Colmillo de serpiente", "Colmillos de serpiente"));
+            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Escama de serpiente", "Escamas de serpiente"));
+            Items.Add(new Weapon(ITEM_ID_CLUB, "Porra", "Porras", 3, 10));
+            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Poción curativa", "Pociones curativas", 5));
+            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Colmillo de araña", "Colmillos de araña"));
+            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Seda de araña", "Sedas de araña"));
+            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Pase de Aventurero", "Pases de Aventurero"));
         }
 
         private static void PopulateMonsters()
         {
-            Monster rat = new Monster(MONSTER_ID_RAT, "Rat", 5, 3, 10, 3, 3);
+            Monster rat = new Monster(MONSTER_ID_RAT, "Rata", 5, 3, 10, 3, 3);
             rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_RAT_TAIL), 75, false));
             rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_PIECE_OF_FUR), 75, true));
 
-            Monster snake = new Monster(MONSTER_ID_SNAKE, "Snake", 5, 5, 10, 3, 3);
+            Monster snake = new Monster(MONSTER_ID_SNAKE, "Serpiente", 5, 5, 10, 3, 3);
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false));
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESKIN), 75, true));
 
-            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Giant spider", 20, 5, 40, 10, 10);
+            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Araña gigante", 20, 5, 40, 10, 10);
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_SILK), 25, false));
 
@@ -88,8 +88,8 @@ namespace Engine
             Quest clearAlchemistGarden =
                 new Quest(
                     QUEST_ID_CLEAR_ALCHEMIST_GARDEN,
-                    "Clear the alchemist's garden",
-                    "Kill rats in the alchemist's garden and bring back 3 rat tails. You will receive a healing potion and 10 gold pieces.", 20, 10);
+                    "Despeja el jardín del Alquimista",
+                    "Mata ratas en el jardín del Alquimista y trae de vuelta 3 colas de rata. A cambio recibiras una poción curativa y 10 piezas de oro.", 20, 10);
 
             clearAlchemistGarden.QuestCompletionItems.Add(new QuestCompletionItem(ItemByID(ITEM_ID_RAT_TAIL), 3));
 
@@ -98,8 +98,8 @@ namespace Engine
             Quest clearFarmersField =
                 new Quest(
                     QUEST_ID_CLEAR_FARMERS_FIELD,
-                    "Clear the farmer's field",
-                    "Kill snakes in the farmer's field and bring back 3 snake fangs. You will receive an adventurer's pass and 20 gold pieces.", 20, 20);
+                    "Despeja el campo de labranza",
+                    "Mata serpientes en el campo de labranza y trae de vuelta 3 colmillos de serpiente. Recibirás a cambio un Pase de Aventurero y 20 piezas de oro.", 20, 20);
 
             clearFarmersField.QuestCompletionItems.Add(new QuestCompletionItem(ItemByID(ITEM_ID_SNAKE_FANG), 3));
 

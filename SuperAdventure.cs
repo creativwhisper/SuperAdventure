@@ -284,7 +284,7 @@ namespace SuperAdventure
 
             if (healingPotions.Count == 0)
             {
-                // The player doesn't have any potions, so hide the potion combobox and "Use" button
+                // El jugador no tiene pociones así que escondemos el botón y el combobox
                 cboPotions.Visible = false;
                 btnUsePotion.Visible = false;
             }
@@ -397,8 +397,7 @@ namespace SuperAdventure
                     // Añade una nueva línea al texto, sólo para añadir claridad.
                     rtbMessages.Text += Environment.NewLine;
 
-                    // Move player to current location (to heal player and create a new monster to fight)
-                    //MoveTo(_player.CurrentLocation);
+                    
                 }
                 else
                 {
