@@ -41,6 +41,24 @@ namespace Engine
 
         }
 
+        public int SetNewDexterity()
+        {
+            CurrentDexterity++;
+            return CurrentDexterity;
+        }
+
+        public int SetNewStrength()
+        {
+            CurrentStrength++;
+            return CurrentStrength;
+        }
+
+        public int SetNewMaxHealth()
+        {
+            MaximumHitPoints += 5;
+            return MaximumHitPoints;
+        }
+
         public bool HasRequiredItemToEnterThisLocation(Location location)
         {
             if (location.ItemRequiredToEnter == null)

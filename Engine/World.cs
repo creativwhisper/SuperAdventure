@@ -66,15 +66,15 @@ namespace Engine
 
         private static void PopulateMonsters()
         {
-            Monster rat = new Monster(MONSTER_ID_RAT, "Rata", 5, 3, 10, 3, 3);
+            Monster rat = new Monster(MONSTER_ID_RAT, "Rata", 5, 3, 10, 3, 3, 5);
             rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_RAT_TAIL), 75, false));
             rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_PIECE_OF_FUR), 75, true));
 
-            Monster snake = new Monster(MONSTER_ID_SNAKE, "Serpiente", 5, 5, 10, 3, 3);
+            Monster snake = new Monster(MONSTER_ID_SNAKE, "Serpiente", 5, 5, 10, 3, 3, 5);
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false));
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESKIN), 75, true));
 
-            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Araña gigante", 20, 5, 40, 10, 10);
+            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Araña gigante", 20, 5, 40, 10, 10, 7);
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_SILK), 25, false));
 
@@ -88,7 +88,7 @@ namespace Engine
             Quest clearAlchemistGarden =
                 new Quest(
                     QUEST_ID_CLEAR_ALCHEMIST_GARDEN,
-                    "Despeja el jardín del Alquimista",
+                    "'Despeja el jardín del Alquimista'",
                     "Mata ratas en el jardín del Alquimista y trae de vuelta 3 colas de rata. A cambio recibiras una poción curativa y 10 piezas de oro.", 20, 10);
 
             clearAlchemistGarden.QuestCompletionItems.Add(new QuestCompletionItem(ItemByID(ITEM_ID_RAT_TAIL), 3));
@@ -98,7 +98,7 @@ namespace Engine
             Quest clearFarmersField =
                 new Quest(
                     QUEST_ID_CLEAR_FARMERS_FIELD,
-                    "Despeja el campo de labranza",
+                    "'Despeja el campo de labranza'",
                     "Mata serpientes en el campo de labranza y trae de vuelta 3 colmillos de serpiente. Recibirás a cambio un Pase de Aventurero y 20 piezas de oro.", 20, 20);
 
             clearFarmersField.QuestCompletionItems.Add(new QuestCompletionItem(ItemByID(ITEM_ID_SNAKE_FANG), 3));
@@ -111,31 +111,31 @@ namespace Engine
 
         private static void PopulateLocations()
         {
-            // Create each location
-            Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You really need to clean up the place.");
+            // Crea cada localización usando el constructor
+            Location home = new Location(LOCATION_ID_HOME, "Casa", "Tu acogedora cabaña de madera. Tus pocas posesiones están desperdigadas por el suelo sin ningún orden. Deberías estar fuera labrándote un nombre como aventurero.");
 
-            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain.");
+            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Plaza del pueblo", "Todo parece tranquilo en la plaza del pueblo, no se ve un alma. Unos pocos pájaros beben de la borboteante fuente que decora el centro de la plaza.");
 
-            Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.");
+            Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Choza del Alquimista", "Un humo verdoso se eleva desde la chimenea de la choza. Numerosas hierbas decoran las mesas y burbujeantes retortas de extraños colores atraen tu atención.");
             alchemistHut.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN);
 
-            Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "Many plants are growing here.");
+            Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Jardín del Alquimista", "Aquí crecen numerosas plantas cuyos nombres desconoces, algunas con aspecto realmente amenazador.");
             alchemistsGarden.MonsterLivingHere = MonsterByID(MONSTER_ID_RAT);
 
-            Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "There is a small farmhouse, with a farmer in front.");
+            Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Casa de labranza", "Un granjero te contempla desde la puerta de su cabaña. Un carro rebosante de maíz indica que la cosecha ha debido terminar hace poco.");
             farmhouse.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD);
 
-            Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.");
+            Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Campo de labranza", "Un maizal recientemente cosechado se extiende hasta donde alcanza la vista. Un desvencijado espantapájaros se mece con la brisa de otoño.");
             farmersField.MonsterLivingHere = MonsterByID(MONSTER_ID_SNAKE);
 
-            Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", ItemByID(ITEM_ID_ADVENTURER_PASS));
+            Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Puesto de guardia", "Una cabaña de piedra y un portón de madera te cortan el paso. Un enorme guardia con cara de pocos amigos vigila el portón.", ItemByID(ITEM_ID_ADVENTURER_PASS));
 
-            Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.");
+            Location bridge = new Location(LOCATION_ID_BRIDGE, "Puente de piedra", "Un antiguo puente de piedra cruza el ruidoso río. ");
 
-            Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see spider webs covering covering the trees in this forest.");
+            Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Bosque", "Este bosque es realmente antiguo y los árboles están tan juntos que cuesta ver la luz del sol. Telas de araña se extienden entre las ramas más altas y el aire trae un aroma siniestro.");
             spiderField.MonsterLivingHere = MonsterByID(MONSTER_ID_GIANT_SPIDER);
 
-            // Link the locations together
+            // Enlaza todas las localizaciones entre ellas creando el mapa.
             home.LocationToNorth = townSquare;
 
             townSquare.LocationToNorth = alchemistHut;
@@ -161,7 +161,7 @@ namespace Engine
 
             spiderField.LocationToWest = bridge;
 
-            // Add the locations to the static list
+            // Añade las distintas localizaciones a la lista estática
             Locations.Add(home);
             Locations.Add(townSquare);
             Locations.Add(guardPost);

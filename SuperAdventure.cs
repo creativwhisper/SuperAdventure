@@ -160,7 +160,7 @@ namespace SuperAdventure
                 Monster standardMonster = World.MonsterByID(newLocation.MonsterLivingHere.ID);
 
                 _currentMonster = new Monster(standardMonster.ID, standardMonster.Name, standardMonster.MaximumDamage,
-                    standardMonster.RewardExperiencePoints, standardMonster.RewardGold, standardMonster.CurrentHitPoints, standardMonster.MaximumHitPoints);
+                    standardMonster.RewardExperiencePoints, standardMonster.RewardGold, standardMonster.CurrentHitPoints, standardMonster.MaximumHitPoints, standardMonster.Armor);
 
                 // Añade los objetos que recibirá el jugador al matarlo a la lista de Loot del monstruo.
                 foreach (LootItem lootItem in standardMonster.LootTable)
@@ -260,7 +260,7 @@ namespace SuperAdventure
             else
             {
                 cboWeapons.DataSource = weapons;
-                cboWeapons.DisplayMember = "Nombre";
+                cboWeapons.DisplayMember = "Name";
                 cboWeapons.ValueMember = "ID";
 
                 cboWeapons.SelectedIndex = 0;
@@ -291,7 +291,7 @@ namespace SuperAdventure
             else
             {
                 cboPotions.DataSource = healingPotions;
-                cboPotions.DisplayMember = "Nombre";
+                cboPotions.DisplayMember = "Name";
                 cboPotions.ValueMember = "ID";
 
                 cboPotions.SelectedIndex = 0;
@@ -307,15 +307,35 @@ namespace SuperAdventure
                 // Toma el arma seleccionada en el combobox
                 Weapon currentWeapon = (Weapon)cboWeapons.SelectedItem;
 
-                // Calcula el daño que le hace al monstruo
-                int damageToMonster = RandomNumberGenerator.NumberBetween(currentWeapon.MinimumDamage, currentWeapon.MaximumDamage);
+                // Determinamos el ratio de acierto y si baja de 20 lo igualamos a 20
+                int chanceToHitMonster = 20 + (_player.CurrentDexterity - _currentMonster.Armor) * 10;
+                if (chanceToHitMonster < 20)
+                {
+                    chanceToHitMonster = 20;
+                } else if (chanceToHitMonster > 95)
+                {
+                    chanceToHitMonster = 95;
+                }
 
-                // Aplica el daño al monstruo actual.
-                _currentMonster.CurrentHitPoints -= damageToMonster;
+                // Tiramos los dados
+                int diceThrow = RandomNumberGenerator.DiceThrow();
 
-                // Muestra mensaje
-                rtbMessages.Text += "Golpeas a la " + _currentMonster.Name + " por un total de " + damageToMonster.ToString() + " puntos de daño." + Environment.NewLine;
+                // Comprobamos si el golpe impacta
+                if (diceThrow <= chanceToHitMonster)
+                {
+                    // Calcula el daño que le hace al monstruo
+                    int damageToMonster = RandomNumberGenerator.NumberBetween(currentWeapon.MinimumDamage, currentWeapon.MaximumDamage);
 
+                    // Aplica el daño al monstruo actual.
+                    _currentMonster.CurrentHitPoints -= damageToMonster;
+
+                    // Muestra mensaje
+                    rtbMessages.Text += "Golpeas a la " + _currentMonster.Name + " por un total de " + damageToMonster.ToString() + " puntos de daño." + Environment.NewLine;
+                }
+                else
+                {
+                    rtbMessages.Text += "¡Atacas al monstruo pero no consigues golpearle!";
+                }
 
                 // Comprueba si el monstruo ha muerto
                 if (_currentMonster.CurrentHitPoints <= 0)
@@ -332,6 +352,13 @@ namespace SuperAdventure
                     {
                         // Llama a la función de subir nivel
                         _player.SetNewLevel();
+                        // Llama a la función que incrementa la fuerza
+                        _player.SetNewStrength();
+                        // Llama a la función que incrementa la destreza
+                        _player.SetNewDexterity();
+                        // Llama a la función que incrementa la vida máxima
+                        _player.SetNewMaxHealth();
+
                         // dobla el número de puntos necesario para subir de nivel la próxima vez
                         experienceRequiredToLevel = experienceRequiredToLevel * 2;
                         int nextLevel = _player.Level + 1;

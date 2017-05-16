@@ -28,6 +28,12 @@ namespace Engine
 
             return (int)(minimumValue + randomValueInRange);
         }
+
+        public static int DiceThrow()
+        {
+            int dt = RandomNumberGenerator.NumberBetween(0, 100);
+            return dt;
+        }
     }
 }
 

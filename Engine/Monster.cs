@@ -15,10 +15,11 @@ namespace Engine
         public int MaximumDamage { get; set; }
         public int RewardExperiencePoints { get; set; }
         public int RewardGold { get; set; }
+        public int Armor { get; set; }
         public List<LootItem> LootTable { get; set; }
 
         // public constructor con algunos parámetros derivados de la clase padre (base)
-        public Monster ( int id, string name, int maximumHitPoints, int currentHitPoints, int maximumDamage, int rewardExperiencePoints, int rewardGold)
+        public Monster ( int id, string name, int maximumHitPoints, int currentHitPoints, int maximumDamage, int rewardExperiencePoints, int rewardGold, int armor)
             : base ( maximumHitPoints, currentHitPoints)
         {
             ID = id;
@@ -26,6 +27,7 @@ namespace Engine
             MaximumDamage = maximumDamage;
             RewardExperiencePoints = rewardExperiencePoints;
             RewardGold = rewardGold;
+            Armor = armor;
             LootTable = new List<LootItem>();
         }
 

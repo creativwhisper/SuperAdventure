@@ -58,36 +58,36 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Hit Points:";
+            this.label1.Text = "Salud:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Gold:";
+            this.label2.Text = "Oro:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(18, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Experience:";
+            this.label3.Text = "Experiencia:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(18, 100);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Level:";
+            this.label4.Text = "Nivel:";
             // 
             // lblHitPoints
             // 
@@ -126,9 +126,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(617, 531);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.Size = new System.Drawing.Size(99, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Select Action";
+            this.label5.Text = "Seleccionar Acción";
             // 
             // cboWeapons
             // 
@@ -152,7 +152,7 @@
             this.btnUseWeapon.Name = "btnUseWeapon";
             this.btnUseWeapon.Size = new System.Drawing.Size(75, 23);
             this.btnUseWeapon.TabIndex = 11;
-            this.btnUseWeapon.Text = "Attack";
+            this.btnUseWeapon.Text = "Atacar";
             this.btnUseWeapon.UseVisualStyleBackColor = true;
             this.btnUseWeapon.Click += new System.EventHandler(this.btnUseWeapon_Click);
             // 
@@ -162,7 +162,7 @@
             this.btnUsePotion.Name = "btnUsePotion";
             this.btnUsePotion.Size = new System.Drawing.Size(75, 23);
             this.btnUsePotion.TabIndex = 12;
-            this.btnUsePotion.Text = "Use Potion";
+            this.btnUsePotion.Text = "Usar Poción";
             this.btnUsePotion.UseVisualStyleBackColor = true;
             this.btnUsePotion.Click += new System.EventHandler(this.btnUsePotion_Click);
             // 
@@ -172,7 +172,7 @@
             this.btnNorth.Name = "btnNorth";
             this.btnNorth.Size = new System.Drawing.Size(75, 23);
             this.btnNorth.TabIndex = 13;
-            this.btnNorth.Text = "North";
+            this.btnNorth.Text = "Norte";
             this.btnNorth.UseVisualStyleBackColor = true;
             this.btnNorth.Click += new System.EventHandler(this.btnNorth_Click);
             // 
@@ -182,7 +182,7 @@
             this.btnEast.Name = "btnEast";
             this.btnEast.Size = new System.Drawing.Size(75, 23);
             this.btnEast.TabIndex = 14;
-            this.btnEast.Text = "East";
+            this.btnEast.Text = "Este";
             this.btnEast.UseVisualStyleBackColor = true;
             this.btnEast.Click += new System.EventHandler(this.btnEast_Click);
             // 
@@ -192,7 +192,7 @@
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(75, 23);
             this.btnSouth.TabIndex = 15;
-            this.btnSouth.Text = "South";
+            this.btnSouth.Text = "Sur";
             this.btnSouth.UseVisualStyleBackColor = true;
             this.btnSouth.Click += new System.EventHandler(this.btnSouth_Click);
             // 
@@ -202,7 +202,7 @@
             this.btnWest.Name = "btnWest";
             this.btnWest.Size = new System.Drawing.Size(75, 23);
             this.btnWest.TabIndex = 16;
-            this.btnWest.Text = "West";
+            this.btnWest.Text = "Oeste";
             this.btnWest.UseVisualStyleBackColor = true;
             this.btnWest.Click += new System.EventHandler(this.btnWest_Click);
             // 
