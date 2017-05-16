@@ -22,7 +22,7 @@ namespace SuperAdventure
         {
             InitializeComponent();
 
-            _player = new Player(10, 10, 20, 0, 1, 10, 10);
+            _player = new Player(20, 20, 20, 0, 1, 5, 5);
             MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
             rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine;
             _player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
@@ -310,6 +310,7 @@ namespace SuperAdventure
 
                 // Determinamos el ratio de acierto y si baja de 20 lo igualamos a 20
                 int chanceToHitMonster = 20 + (_player.CurrentDexterity - _currentMonster.Armor) * 10;
+                
                 if (chanceToHitMonster < 20)
                 {
                     chanceToHitMonster = 20;
@@ -320,12 +321,15 @@ namespace SuperAdventure
 
                 // Tiramos los dados
                 int diceThrow = RandomNumberGenerator.DiceThrow();
+                
+                lblUltTirada.Text = diceThrow.ToString();
 
                 // Comprobamos si el golpe impacta
                 if (diceThrow <= chanceToHitMonster)
                 {
                     // Calcula el daño que le hace al monstruo
-                    int damageToMonster = RandomNumberGenerator.NumberBetween(currentWeapon.MinimumDamage, currentWeapon.MaximumDamage);
+                    int baseDamage = RandomNumberGenerator.NumberBetween(currentWeapon.MinimumDamage, currentWeapon.MaximumDamage);
+                    int damageToMonster = (baseDamage + _player.CurrentStrength) - _currentMonster.Armor;
 
                     // Aplica el daño al monstruo actual.
                     _currentMonster.CurrentHitPoints -= damageToMonster;
