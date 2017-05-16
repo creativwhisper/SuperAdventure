@@ -24,6 +24,7 @@ namespace Engine
         public const int ITEM_ID_SPIDER_FANG = 8;
         public const int ITEM_ID_SPIDER_SILK = 9;
         public const int ITEM_ID_ADVENTURER_PASS = 10;
+        
 
         public const int MONSTER_ID_RAT = 1;
         public const int MONSTER_ID_SNAKE = 2;
@@ -41,6 +42,7 @@ namespace Engine
         public const int LOCATION_ID_FARM_FIELD = 7;
         public const int LOCATION_ID_BRIDGE = 8;
         public const int LOCATION_ID_SPIDER_FIELD = 9;
+        public const int LOCATION_ID_BATHROOM = 10;
 
         static World()
         {
@@ -52,7 +54,7 @@ namespace Engine
 
         private static void PopulateItems()
         {
-            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Espada oxidada", "Espadas oxidadas", 0, 5));
+            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Espada oxidada", "Espadas oxidadas", 1, 5));
             Items.Add(new Item(ITEM_ID_RAT_TAIL, "Cola de rata", "Colas de rata"));
             Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Pieza de piel", "Piezas de piel"));
             Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Colmillo de serpiente", "Colmillos de serpiente"));
@@ -62,6 +64,7 @@ namespace Engine
             Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Colmillo de araña", "Colmillos de araña"));
             Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Seda de araña", "Sedas de araña"));
             Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Pase de Aventurero", "Pases de Aventurero"));
+            
         }
 
         private static void PopulateMonsters()
@@ -135,8 +138,10 @@ namespace Engine
             Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Bosque", "Este bosque es realmente antiguo y los árboles están tan juntos que cuesta ver la luz del sol. Telas de araña se extienden entre las ramas más altas y el aire trae un aroma siniestro.");
             spiderField.MonsterLivingHere = MonsterByID(MONSTER_ID_GIANT_SPIDER);
 
+
             // Enlaza todas las localizaciones entre ellas creando el mapa.
             home.LocationToNorth = townSquare;
+            
 
             townSquare.LocationToNorth = alchemistHut;
             townSquare.LocationToSouth = home;

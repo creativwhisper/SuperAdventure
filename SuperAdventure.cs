@@ -24,6 +24,7 @@ namespace SuperAdventure
 
             _player = new Player(10, 10, 20, 0, 1, 10, 10);
             MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+            rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine;
             _player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
 
             lblHitPoints.Text = _player.CurrentHitPoints.ToString();
@@ -334,7 +335,7 @@ namespace SuperAdventure
                 }
                 else
                 {
-                    rtbMessages.Text += "¡Atacas al monstruo pero no consigues golpearle!";
+                    rtbMessages.Text += "¡Atacas al monstruo pero no consigues golpearle!" + Environment.NewLine;
                 }
 
                 // Comprueba si el monstruo ha muerto
@@ -445,9 +446,11 @@ namespace SuperAdventure
                     if (_player.CurrentHitPoints <= 0)
                     {
                         // Muestra mensaje
+                        rtbMessages.Clear();
                         rtbMessages.Text += "La " + _currentMonster.Name + " te ha matado." + Environment.NewLine;
-
-                        // Regrusa el jugador a "Casa"
+                        rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine + Environment.NewLine;
+                    
+                        // Regresa el jugador a "Casa"
                         MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
                     }
                 }
