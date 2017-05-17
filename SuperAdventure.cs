@@ -32,11 +32,12 @@ namespace SuperAdventure
             else
             {
                 _player = Player.CreateDefaultPlayer();
+                rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine;
             }
 
             MoveTo(_player.CurrentLocation);
-            rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine;
-            _player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
+            
+            // _player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
 
             UpdatePlayerStats();
         }
