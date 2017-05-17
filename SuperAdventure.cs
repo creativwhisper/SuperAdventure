@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using Engine; // Llamada a la librería de clases donde almacenamos la lógica de juego.
 
@@ -16,21 +17,28 @@ namespace SuperAdventure
     {
         private Player _player;
         private Monster _currentMonster;
+        private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
+
         private int experienceRequiredToLevel = 100;
 
         public SuperAdventure()
         {
             InitializeComponent();
 
-            _player = new Player(20, 20, 20, 0, 1, 5, 5);
-            MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            {
+                _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+            }
+            else
+            {
+                _player = Player.CreateDefaultPlayer();
+            }
+
+            MoveTo(_player.CurrentLocation);
             rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine;
             _player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
 
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-            lblGold.Text = _player.Gold.ToString();
-            lblExperience.Text = _player.ExperiencePoints.ToString();
-            lblLevel.Text = _player.Level.ToString();
+            UpdatePlayerStats();
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
@@ -357,12 +365,14 @@ namespace SuperAdventure
                     {
                         // Llama a la función de subir nivel
                         _player.SetNewLevel();
+                        // Algunas funciones preparadas para cuando haya subidas de nivel que sólo alteren algunos valores
+                        // Ahora mismo deshabilitado
                         // Llama a la función que incrementa la fuerza
-                        _player.SetNewStrength();
+                        //_player.SetNewStrength();
                         // Llama a la función que incrementa la destreza
-                        _player.SetNewDexterity();
+                        //_player.SetNewDexterity();
                         // Llama a la función que incrementa la vida máxima
-                        _player.SetNewMaxHealth();
+                        //_player.SetNewMaxHealth();
 
                         // dobla el número de puntos necesario para subir de nivel la próxima vez
                         experienceRequiredToLevel = experienceRequiredToLevel * 2;
@@ -415,11 +425,7 @@ namespace SuperAdventure
                         }
                     }
 
-                    // Actualiza los datos del jugador en la UI.
-                    lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-                    lblGold.Text = _player.Gold.ToString();
-                    lblExperience.Text = _player.ExperiencePoints.ToString();
-                    lblLevel.Text = _player.Level.ToString();
+                    UpdatePlayerStats();
 
                     UpdateInventoryListInUI();
                     UpdateWeaponListInUI();
@@ -517,6 +523,14 @@ namespace SuperAdventure
             UpdatePotionListInUI();
         }
 
+        private void UpdatePlayerStats()
+        {
+            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+            lblGold.Text = _player.Gold.ToString();
+            lblExperience.Text = _player.ExperiencePoints.ToString();
+            lblLevel.Text = _player.Level.ToString();
+        }
+
         // Cuando la ventana detecta que hay un cambio en el texto hace scroll hasta el final.
         private void rtbMessages_TextChanged(object sender, EventArgs e)
         {
@@ -524,6 +538,9 @@ namespace SuperAdventure
             rtbMessages.ScrollToCaret();
         }
 
-       
+        private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+        }
     }
 }
