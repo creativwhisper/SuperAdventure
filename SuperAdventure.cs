@@ -269,11 +269,20 @@ namespace SuperAdventure
             }
             else
             {
+                cboWeapons.SelectedIndexChanged -= cboWeapons_SelectedIndexChanged;
                 cboWeapons.DataSource = weapons;
+                cboWeapons.SelectedIndexChanged += cboWeapons_SelectedIndexChanged;
                 cboWeapons.DisplayMember = "Name";
                 cboWeapons.ValueMember = "ID";
 
-                cboWeapons.SelectedIndex = 0;
+                if (_player.CurrentWeapon != null)
+                {
+                    cboWeapons.SelectedItem = _player.CurrentWeapon;
+                }
+                else
+                {
+                    cboWeapons.SelectedIndex = 0;
+                }
             }
         }
 
@@ -460,9 +469,11 @@ namespace SuperAdventure
                         rtbMessages.Clear();
                         rtbMessages.Text += "La " + _currentMonster.Name + " te ha matado." + Environment.NewLine;
                         rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine + Environment.NewLine;
-                    
-                        // Regresa el jugador a "Casa"
+
+                        // Regresa el jugador a "Casa" e instancia un player Default nuevo.
+                        _player = Player.CreateDefaultPlayer();
                         MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+                        
                     }
                 }
             } else
@@ -542,6 +553,11 @@ namespace SuperAdventure
         private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+        }
+
+        private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _player.CurrentWeapon = (Weapon)cboWeapons.SelectedItem;
         }
     }
 }
