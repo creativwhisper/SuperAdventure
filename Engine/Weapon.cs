@@ -17,11 +17,7 @@ namespace Engine
 
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
-        public int BonusAFuerza { get; set; }
-        public int BonusADestreza { get; set; }
-        public int BonusAVidaMaxima { get; set; }
-        public int BonusAPrecision { get; set; }
-        public string SpecialName { get; set; }
+        
         
 
         // public constructor con algunos parámetros derivados de la clase padre (base)
@@ -31,16 +27,6 @@ namespace Engine
             MaximumDamage = maximumDamage;
         }
 
-        public Weapon ( int id, string name, string namePlural, string specialName, int minimumDamage, int maximumDamage, int bonusAFuerza, int bonusADestreza, int bonusAVidaMaxima, int bonusAPrecision) : base (id, name, namePlural)
-        {
-            SpecialName = specialName;
-            MinimumDamage = minimumDamage;
-            MaximumDamage = maximumDamage;
-            BonusAFuerza = bonusAFuerza;
-            BonusADestreza = bonusADestreza;
-            BonusAVidaMaxima = bonusAPrecision;
-            BonusAPrecision = bonusAPrecision;
-            
-        }
+        
     }
 }
