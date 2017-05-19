@@ -18,8 +18,7 @@ namespace SuperAdventure
         private Player _player;
         private Monster _currentMonster;
         private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
-
-        private int experienceRequiredToLevel = 100;
+        
 
         public SuperAdventure()
         {
@@ -353,11 +352,11 @@ namespace SuperAdventure
                     _currentMonster.CurrentHitPoints -= damageToMonster;
 
                     // Muestra mensaje
-                    rtbMessages.Text += "Golpeas a la " + _currentMonster.Name + " por un total de " + damageToMonster.ToString() + " puntos de daño." + Environment.NewLine;
+                    rtbMessages.Text += "Golpeas a la " + _currentMonster.Name + " por un total de " + damageToMonster.ToString() + " puntos de daño. Posibilidad: " + chanceToHitMonster + Environment.NewLine;
                 }
                 else
                 {
-                    rtbMessages.Text += "¡Atacas al monstruo pero no consigues golpearle!" + Environment.NewLine;
+                    rtbMessages.Text += "¡Atacas al monstruo pero no consigues golpearle! Posibilidad: " + chanceToHitMonster + Environment.NewLine;
                 }
 
                 // Comprueba si el monstruo ha muerto
@@ -371,7 +370,7 @@ namespace SuperAdventure
                     _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
 
                     // Comprueba si los puntos de experiencia ha llegado al requisito del nuevo nivel
-                    if( _player.ExperiencePoints >= experienceRequiredToLevel)
+                    if( _player.ExperiencePoints >= _player.ExperienceRequiredToLevel)
                     {
                         // Llama a la función de subir nivel
                         _player.SetNewLevel();
@@ -384,11 +383,9 @@ namespace SuperAdventure
                         // Llama a la función que incrementa la vida máxima
                         //_player.SetNewMaxHealth();
 
-                        // dobla el número de puntos necesario para subir de nivel la próxima vez
-                        experienceRequiredToLevel = experienceRequiredToLevel * 2;
                         int nextLevel = _player.Level + 1;
                         rtbMessages.Text += "¡Has subido de nivel!" + Environment.NewLine;
-                        rtbMessages.Text += "Necesitarás " + experienceRequiredToLevel.ToString() + " para alcanzar el nivel " + nextLevel + "." + Environment.NewLine;
+                        rtbMessages.Text += "Necesitarás " + _player.ExperienceRequiredToLevel.ToString() + " para alcanzar el nivel " + nextLevel + "." + Environment.NewLine;
                     }
                     rtbMessages.Text += "Has recibido " + _currentMonster.RewardExperiencePoints.ToString() + " puntos de experiencia." + Environment.NewLine;
 
@@ -451,30 +448,53 @@ namespace SuperAdventure
                 {
                     // El monstruo sigue vivo
 
-                    // Determina el daño que el monstruo le hace al jugador
-                    int damageToPlayer = RandomNumberGenerator.NumberBetween(0, _currentMonster.MaximumDamage);
+                    // Determina la posibilidad de acertar al jugador
+                    int chanceToHitPlayer = 40 + ((_currentMonster.MaximumDamage - _player.CurrentDexterity) * 10); 
 
-                    // Muestra mensaje
-                    rtbMessages.Text += "La " + _currentMonster.Name + " te golpea por " + damageToPlayer.ToString() + " puntos de daño." + Environment.NewLine;
-
-                    // Detrae el daño de la vida del jugador
-                    _player.CurrentHitPoints -= damageToPlayer;
-
-                    // Actualiza la vida del jugador en la UI
-                    lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-
-                    if (_player.CurrentHitPoints <= 0)
+                    if(chanceToHitPlayer < 20)
                     {
-                        // Muestra mensaje
-                        rtbMessages.Clear();
-                        rtbMessages.Text += "La " + _currentMonster.Name + " te ha matado." + Environment.NewLine;
-                        rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine + Environment.NewLine;
-
-                        // Regresa el jugador a "Casa" e instancia un player Default nuevo.
-                        _player = Player.CreateDefaultPlayer();
-                        MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
-                        
+                        chanceToHitPlayer = 20;
+                    } else if (chanceToHitPlayer > 70)
+                    {
+                        chanceToHitPlayer = 70;
                     }
+
+                    // Determinamos si el golpe impacta
+                    int monsterDiceThrow = RandomNumberGenerator.DiceThrow();
+
+                    if(monsterDiceThrow < chanceToHitPlayer)
+                    {
+                        // Determina el daño que el monstruo le hace al jugador
+                        int damageToPlayer = RandomNumberGenerator.NumberBetween(0, _currentMonster.MaximumDamage);
+
+                        // Muestra mensaje
+                        rtbMessages.Text += "La " + _currentMonster.Name + " te golpea por " + damageToPlayer.ToString() + " puntos de daño." + Environment.NewLine;
+
+                        // Detrae el daño de la vida del jugador
+                        _player.CurrentHitPoints -= damageToPlayer;
+
+                        // Actualiza la vida del jugador en la UI
+                        lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+
+                        if (_player.CurrentHitPoints <= 0)
+                        {
+                            // Muestra mensaje
+                            rtbMessages.Clear();
+                            rtbMessages.Text += "La " + _currentMonster.Name + " te ha matado." + Environment.NewLine;
+                            rtbMessages.Text += "Comienzo de la aventura" + Environment.NewLine + Environment.NewLine;
+
+                            // Regresa el jugador a "Casa" e instancia un player Default nuevo.
+                            _player = Player.CreateDefaultPlayer();
+                            MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+
+                        }
+
+                    } else
+                    {
+                        rtbMessages.Text += "¡La " + _currentMonster.Name + " se lanza a por tí pero no logra tocarte!" + Environment.NewLine;
+                    }
+
+                    
                 }
             } else
             {

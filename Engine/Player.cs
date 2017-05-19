@@ -13,6 +13,7 @@ namespace Engine
         // Hereda propiedades MaximumHitPoints y CurrentHitPoints de la clase padre "LivingCreature"
         public int Gold { get; set; }
         public int ExperiencePoints { get; set; }
+        public int ExperienceRequiredToLevel { get; set; }
         public int Level { get; set; }
         public int CurrentStrength { get; set; }
         public int CurrentDexterity { get; set; }
@@ -21,13 +22,14 @@ namespace Engine
         public List<InventoryItem> Inventory { get; set; }
         public List<PlayerQuest> Quests { get; set; }
 
-        private Player(int currentHitPoints, int maximumHitPoints, int level, int currentStrength, int currentDexterity, int gold, int experiencePoints) : base(currentHitPoints, maximumHitPoints)
+        private Player(int currentHitPoints, int maximumHitPoints, int level, int currentStrength, int currentDexterity, int gold, int experiencePoints, int experienceRequiredToLevel) : base(currentHitPoints, maximumHitPoints)
         {
             Level = level;
             CurrentStrength = currentStrength;
             CurrentDexterity = currentDexterity;
             Gold = gold;
             ExperiencePoints = experiencePoints;
+            ExperienceRequiredToLevel = experienceRequiredToLevel;
 
             Inventory = new List<InventoryItem>();
             Quests = new List<PlayerQuest>();
@@ -35,7 +37,7 @@ namespace Engine
 
         public static Player CreateDefaultPlayer()
         {
-            Player player = new Player(10, 10, 1, 5, 5, 20, 0);
+            Player player = new Player(20, 20, 1, 5, 5, 20, 0, 100);
             player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
             player.CurrentLocation = World.LocationByID(World.LOCATION_ID_HOME);
 
@@ -57,8 +59,9 @@ namespace Engine
                 int currentDexterity = Convert.ToInt32(playerData.SelectSingleNode("/Player/Stats/CurrentDexterity").InnerText);
                 int gold = Convert.ToInt32(playerData.SelectSingleNode("/Player/Stats/Gold").InnerText);
                 int experiencePoints = Convert.ToInt32(playerData.SelectSingleNode("/Player/Stats/ExperiencePoints").InnerText);
+                int experienceRequiredToLevel = Convert.ToInt32(playerData.SelectSingleNode("/Player/Stats/ExperienceRequiredToLevel").InnerText);
 
-                Player player = new Player(currentHitPoints, maximumHitPoints, level, currentStrength, currentDexterity, gold, experiencePoints);
+                Player player = new Player(currentHitPoints, maximumHitPoints, level, currentStrength, currentDexterity, gold, experiencePoints, experienceRequiredToLevel);
 
                 int currentLocationID = Convert.ToInt32(playerData.SelectSingleNode("/Player/Stats/CurrentLocation").InnerText);
                 player.CurrentLocation = World.LocationByID(currentLocationID);
@@ -144,6 +147,10 @@ namespace Engine
             experiencePoints.AppendChild(playerData.CreateTextNode(this.ExperiencePoints.ToString()));
             stats.AppendChild(experiencePoints);
 
+            XmlNode experienceRequiredToLevel = playerData.CreateElement("ExperienceRequiredToLevel");
+            experienceRequiredToLevel.AppendChild(playerData.CreateTextNode(this.ExperienceRequiredToLevel.ToString()));
+            stats.AppendChild(experienceRequiredToLevel);
+
             XmlNode currentLocation = playerData.CreateElement("CurrentLocation");
             currentLocation.AppendChild(playerData.CreateTextNode(this.CurrentLocation.ID.ToString()));
             stats.AppendChild(currentLocation);
@@ -204,6 +211,7 @@ namespace Engine
             CurrentStrength++;
             CurrentDexterity++;
             MaximumHitPoints += 5;
+            ExperienceRequiredToLevel = ExperienceRequiredToLevel * 2;
             return Level;
 
         }
