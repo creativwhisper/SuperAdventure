@@ -20,3 +20,14 @@ C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\obj\D
 C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\Engine.dll
 C:\Users\Araglad\Documents\GameDev\Proyectos\SuperAdventure\SuperAdventure\bin\Debug\Engine.pdb
 C:\Users\Angel\Dropbox\Documents\Visual Studio 2017\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.SuperAdventure.resources
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\obj\Debug\SuperAdventure.csprojResolveAssemblyReference.cache
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\obj\Debug\SuperAdventure.Properties.Resources.resources
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\obj\Debug\SuperAdventure.SuperAdventure.resources
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\obj\Debug\SuperAdventure.csproj.GenerateResource.Cache
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\obj\Debug\SuperAdventure.exe
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\obj\Debug\SuperAdventure.pdb
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\bin\Debug\SuperAdventure.exe.config
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\bin\Debug\SuperAdventure.exe
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\bin\Debug\SuperAdventure.pdb
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\bin\Debug\Engine.dll
+C:\Users\Arindhur\Desktop\GameDev\Proyectos\SuperAdventure\bin\Debug\Engine.pdb

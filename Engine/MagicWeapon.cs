@@ -15,7 +15,7 @@ namespace Engine
         /// Un número aleatorio por cada bonus para decidir los valores
         /// dependiendo de los valores un mecanismo para asignarle un nombre especial.
         /// </summary>
-        
+
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
         public int BonusToStrength { get; set; }
@@ -26,14 +26,14 @@ namespace Engine
         public string[] AdjetivoDestreza = { null, "Sutíl", "Certera", "Precisa" };
         public string[] AdjetivoVida = { null, "Encantada", "Bendita", "Sagrada" };
 
-        public MagicWeapon ( int id, string name, string specialWeaponNames, string namePlural, int minimumDamage, int maximumDamage, int bonusToStrength, int bonusToDexterity, int bonusToLife) : base (id, name, namePlural)
+        public MagicWeapon(int id, string name, string specialWeaponNames, string namePlural, int minimumDamage, int maximumDamage, int bonusToStrength, int bonusToDexterity, int bonusToLife) : base(id, name, namePlural)
         {
             MinimumDamage = minimumDamage;
             MaximumDamage = maximumDamage;
             BonusToStrength = bonusToStrength;
             BonusToDexterity = bonusToDexterity;
             BonusToLife = bonusToLife;
-            
+
         }
 
         /*public Weapon CreateNewMagicWeapon()
@@ -78,4 +78,5 @@ namespace Engine
 
         }
     }*/
+    }
 }

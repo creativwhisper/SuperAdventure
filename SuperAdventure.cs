@@ -167,9 +167,10 @@ namespace SuperAdventure
 
                 // Crea un monstruo usando los valores de la tabla general de monstruos
                 Monster standardMonster = World.MonsterByID(newLocation.MonsterLivingHere.ID);
+               
 
-                _currentMonster = new Monster(standardMonster.ID, standardMonster.Name, standardMonster.MaximumDamage,
-                    standardMonster.RewardExperiencePoints, standardMonster.RewardGold, standardMonster.CurrentHitPoints, standardMonster.MaximumHitPoints, standardMonster.Armor);
+                _currentMonster = new Monster(standardMonster.ID, standardMonster.Name, standardMonster.MaximumHitPoints, standardMonster.CurrentHitPoints,  
+                    standardMonster.MaximumDamage, standardMonster.RewardExperiencePoints, standardMonster.RewardGold,  standardMonster.Armor);
 
                 // Añade los objetos que recibirá el jugador al matarlo a la lista de Loot del monstruo.
                 foreach (LootItem lootItem in standardMonster.LootTable)
