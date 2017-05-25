@@ -225,30 +225,14 @@ namespace Engine
             }
 
             // Comprueba si el jugador tiene el objeto que se requiere para entrar
-            foreach (InventoryItem ii in Inventory)
-            {
-                if (ii.Details.ID == location.ItemRequiredToEnter.ID)
-                {
-                    // Hemos encontrado el objeto así que devolvemos true
-                    return true;
-                }
-            }
-
-            // No hemos encontrado el objeto requerido así que devolvemos false
-            return false;
+            return Inventory.Exists(ii => ii.Details.ID == location.ItemRequiredToEnter.ID);
+                        
         }
 
         public bool HasThisQuest(Quest quest)
         {
-            foreach (PlayerQuest playerQuest in Quests)
-            {
-                if (playerQuest.Details.ID == quest.ID)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return Quests.Exists(pq => pq.Details.ID == quest.ID);
+            
         }
 
         public bool CompletedThisQuest(Quest quest)
@@ -269,27 +253,13 @@ namespace Engine
             // Comprueba si el jugador tiene todos los objetos para completar la misión
             foreach (QuestCompletionItem qci in quest.QuestCompletionItems)
             {
-                bool foundItemInPlayersInventory = false;
-
-                // Comprueba cada item en el inventario para ver si tiene el necesario y en la cantidad correcta
-                foreach (InventoryItem ii in Inventory)
-                {
-                    if (ii.Details.ID == qci.Details.ID) // El jugador tiene el item en el inventario
-                    {
-                        foundItemInPlayersInventory = true;
-
-                        if (ii.Quantity < qci.Quantity) // El jugador no tiene la cantidad requerida para la misión.
-                        {
-                            return false;
-                        }
-                    }
-                }
-
-                // El jugador no tiene ningún objeto de los requeridos.
-                if (!foundItemInPlayersInventory)
+                // LINQ comprobando el inventario y luego la cantidad de objetos de quests
+                // Si no tiene el objeto o no en el número necesario, devuelve false.
+                if (!Inventory.Exists(ii => ii.Details.ID == qci.Details.ID && ii.Quantity >= qci.Quantity))
                 {
                     return false;
                 }
+                                                
             }
 
             // Si el jugador tiene el item y además en la cantidad correcta para completar la misión
@@ -298,6 +268,8 @@ namespace Engine
 
         public void RemoveQuestCompletionItems(Quest quest)
         {
+            // Dejo este foreach para ver como estaba la estructura antes de convertirlos todos a LINQ
+            // Mejorar más adelante.
             foreach (QuestCompletionItem qci in quest.QuestCompletionItems)
             {
                 foreach (InventoryItem ii in Inventory)
@@ -314,33 +286,28 @@ namespace Engine
 
         public void AddItemToInventory(Item itemToAdd)
         {
-            foreach (InventoryItem ii in Inventory)
+            //LINQ para comprobar si el jugador tiene el item en su inventario
+            InventoryItem item = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToAdd.ID);
+
+            if (item == null)
             {
-                if (ii.Details.ID == itemToAdd.ID)
-                {
-                    // Tiene el objeto en el inventario, así que añadimos uno más y salimos de la función
-                    ii.Quantity++;
-
-                    return; 
-                }
+                // si no lo tiene lo añadimos a la lista.
+                Inventory.Add(new InventoryItem(itemToAdd, 1));
+            } else
+            {
+                // Si ya lo tiene, añadimos uno más a la cantidad.
+                item.Quantity++;
             }
-
-            // No tiene ninguno en el inventario así que lo añadimos con cantidad 1
-            Inventory.Add(new InventoryItem(itemToAdd, 1));
+            
         }
 
         public void MarkQuestCompleted(Quest quest)
         {
-            // Busca la misión en la lista de misiones del jugador
-            foreach (PlayerQuest pq in Quests)
+            // LINQ comprobando la lista de quest para comprobar si se ha completado o no
+            PlayerQuest playerQuest = Quests.SingleOrDefault(pq => pq.Details.ID == quest.ID);
+            if (playerQuest != null)
             {
-                if (pq.Details.ID == quest.ID)
-                {
-                    // Marca la misión como completada y salimos de la función
-                    pq.IsCompleted = true;
-
-                    return;
-                }
+                playerQuest.IsCompleted = true;
             }
         }
     }
